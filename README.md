@@ -1,7 +1,7 @@
 # Unit 6 Project: Build a Frontend App!
 
 ## Directions
-Congratulations! You've made it to another mileston! You worked hard to develop an understanding of HTTP, Promises, XHR, and the Fetch API and now your understanding of AJAX is sound enough for you to build another really cool project!
+Congratulations! You've made it to another milestone! You worked hard to develop an understanding of HTTP, Promises, XHR, and the Fetch API and now your understanding of AJAX is sound enough for you to build another really cool project!
 
 Your assignment is to build a frontend application. Again, there are general guidelines and checkpoints for this project, but it is left open-ended so that you can really express your creativity. The purpose of this project is for you to:
   1. Build upon your JavaScript foundations by building a more complex and in-depth project.
