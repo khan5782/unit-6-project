@@ -55,6 +55,7 @@ Your submission will be scored against the following criteria:
 | Peter | Cielo |
 | Enmanuel | Mark |
 | Laisha | Carmen |
+
 _**Note:** Groups are preliminarily drafted. They may be adjusted based on when partners are cleared to begin the project._
 
 ## Due Date
