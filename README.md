@@ -47,14 +47,6 @@ Your submission will be scored against the following criteria:
 * Are your variables and functions well-named?
 * Is your code well commented?
 
-## Project Groups
-| Partner 1 | Partner 2 |
-|-----------|-----------|
-| Paul | Anne |
-| Steph | Devonte |
-| Peter | Cielo |
-| Enmanuel | Mark |
-| Laisha | Carmen |
 
 _**Note:** Groups are preliminarily drafted. They may be adjusted based on when partners are cleared to begin the project._
 
