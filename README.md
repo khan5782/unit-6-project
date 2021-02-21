@@ -47,8 +47,3 @@ Your submission will be scored against the following criteria:
 * Are your variables and functions well-named?
 * Is your code well commented?
 
-
-_**Note:** Groups are preliminarily drafted. They may be adjusted based on when partners are cleared to begin the project._
-
-## Due Date
-Wednesday, March 4 at 9AM
