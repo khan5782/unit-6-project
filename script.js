@@ -8,6 +8,9 @@
      addPage.addEventListener("click", addPagehandler)
  })
 
- function addPagehandler(){
-     console.log("Hello")
+ function addPagehandler(e){
+     e.target.style.display = "none"
+     let form = document.createElement("form")
+     
+
  }
