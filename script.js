@@ -20,7 +20,6 @@
     let journaltitle = document.getElementById("journal-title")
     let journaldate = document.getElementById("journal-date")
     let journalcontent = document.getElementById("journal-content")
-    
     let journals = JSON.parse(localStorage.getItem("journals")) || []
     journals.push({
         journaltitle: journaltitle.value,
