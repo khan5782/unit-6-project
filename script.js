@@ -5,6 +5,10 @@
      button.addEventListener("click", saveJournal)
  })
 
+
+
+ // ADD A Journal
+
  function addPagehandler(e){
     let pagecontainer = document.getElementById("add-note")
     pagecontainer.style.display = "none"
@@ -94,7 +98,7 @@
     let deletejournal = document.getElementById(id)
     deletejournal.remove()
     localStorage.setItem("journals", JSON.stringify(journals))
-    console.log(journals, localStorage)
+    // console.log(journals, localStorage)
  }
 
  function submitHandler(e, input, note){
@@ -108,3 +112,6 @@
  }
 
  
+
+
+ // ADD A PLANNER
