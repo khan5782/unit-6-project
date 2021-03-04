@@ -26,11 +26,37 @@
         </div>
     </div>
 
-    <div class = "entry" id="journal-page" style="display:none">
+    <div class = "entry" id="journal-page">
         <form>
             <input id ="journal-title" placeholder="Entry Title"></input>
             <input id="journal-date" type="date"></input><br>
             <textarea id="journal-content"></textarea><br>
+            <button id="journal-save">Save Your Entry</button><br>
+        </form>
+    </div>
+
+    <div class = "entry" style="display: block;">
+        <form>
+            <input id="planner-title" placeholder="Entry Title">
+            <input id="planner-date" type="date"></input><br>
+            <label> Goals: </label> <br>
+            <input id="planner-content"> <br>
+                <!-- <ul id="goals"> 
+                    <li></li>
+                </ul> -->
+            <label> To-do List: </label> <br>
+            <input id="planner-content"> <br>
+                <!-- <p>To-do</p>
+                <ul id="to-do"> 
+                    <li></li>
+                </ul> -->
+            <label> BrainDump: </label> <br>
+            <input id="planner-content">
+                <!-- <p>Other Brainstorm</p>
+                <ul id="brainstorm"> 
+                    <li></li>
+                </ul> -->
+            </input><br>
             <button id="journal-save">Save Your Entry</button><br>
         </form>
     </div>
