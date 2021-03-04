@@ -10,24 +10,29 @@
 </head>
 <body>
     <h1>Project Name</h1>
-    <div class = "front" id="add-note">
-        <div class = "addPage" id = "add-page">
-            <p>Add A New Page</p>
-        </div>
-        <div class = "form-box">
-            <ul id="journal-list">
-            
-            </ul>
-        </div>
-    </div>
-    <div id="journal-page" style="display:none">
-        <form>
-            <input id ="journal-title"></input>
-            <input id="journal-date" type="date"></input><br>
-            <textarea id="journal-content" style="height: 877px; width: 877px" ></textarea><br>
-            <button id="journal-save">Save Youre Journal</button>
-        </form>
+    <div class = "oldEntries">
+        <p>Click to see content of previous entries</p>
+        <ul id="journal-list">
+                
+        </ul>
     </div>
 
+    <div class = "front" id="add-note">
+        <div class = "add" id = "add-page">
+            <p>Add A New Page</p>
+        </div>  
+        <div class = "add" id = "add-list">
+            <p>Add A Planner</p>
+        </div>
+    </div>
+
+    <div class = "entry" id="journal-page" style="display:none">
+        <form>
+            <input id ="journal-title" placeholder="Entry Title"></input>
+            <input id="journal-date" type="date"></input><br>
+            <textarea id="journal-content"></textarea><br>
+            <button id="journal-save">Save Your Entry</button><br>
+        </form>
+    </div>
 </body>
 </html>

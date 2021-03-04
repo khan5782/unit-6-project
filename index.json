@@ -4,7 +4,9 @@
         "name": "Your Name",
         "image": "https://www.mytechguys.ca/wp-content/uploads/2018/02/Productivity.jpg",
         "description": "blank",
-        "date": "03/02/2021"
+        "text": "hello world",
+        "date": "03/02/2021",
+        "id": 1
       }
     ]
   }
