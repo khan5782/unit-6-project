@@ -11,72 +11,98 @@
  })
 
  function addPagehandler(e){
-    e.target.style.display = "none";
+    let pagecontainer = document.getElementById("add-note")
+    pagecontainer.style.display = "none"
     let journalpage = document.getElementById("journal-page")
     journalpage.style.display = "block"
  }
 
  function saveJournal(){
+
+    // grabbing input ele for each journal
     let journaltitle = document.getElementById("journal-title")
     let journaldate = document.getElementById("journal-date")
     let journalcontent = document.getElementById("journal-content")
-    let journals = JSON.parse(localStorage.getItem("journals")) || []
-    journals.push({
+    // get local journals if they are there else set [] of journals
+    let journals = JSON.parse(localStorage.getItem("journals")) || {}
+    // add journal to local storage
+    const uniid = Date.now()
+    journals[uniid]={
         journaltitle: journaltitle.value,
         journaldate: journaldate.value,
         journalcontent: journalcontent.value,
-        id: Date.now()
-    })
+        id: uniid
+    }
     localStorage.setItem("journals", JSON.stringify(journals))
-    console.log(localStorage)
+    // hiding journal entry page and showing home page 
     let journalpage = document.getElementById("journal-page")
     journalpage.style.display = "none"
-    let addPage = document.getElementById("add-page")
-    addPage.style.display = "block"
+    let addnote = document.getElementById("add-note")
+    addnote.style.display = "block"
+    // setting input values to ""
     journaltitle.value = ""
     journaldate.value = ""
     journalcontent.value = ""
+    createJournalList()
+ }
 
-    // start to populate ul
-    journals = JSON.parse(localStorage.getItem("journals"))
+ function createJournalList(){
+     // read save journal in local storage 
+    let journals = JSON.parse(localStorage.getItem("journals"))
     let journallist = document.getElementById("journal-list")
-    journals.forEach(journal => {
+    journallist.innerHTML = ''
+    // for each journal we want to add a journal to li
+    const journalkeys = Object.keys(journals)
+    journalkeys.forEach(key => {
+        let journal = journals[key]
         let journalitem = document.createElement("li")
         journalitem.innerText = journal.journaltitle
         journalitem.id = journal.id
+
+        // create el to show and hide each el
+        let journalcontainer = document.createElement("div")
+        journalcontainer.id = `container-${journal.id}`
+
+        let journaldate = document.createElement("p")
+        let journalcontent = document.createElement("p")
+        let deletebutton = document.createElement("button")
+        deletebutton.innerText = "Delete Journal"
+        journaldate.innerText = journal.journaldate
+        journalcontent.innerText = journal.journalcontent
+
+        // adding to journal container
+        journalcontainer.append(journalcontent, journaldate, deletebutton)
+        journalitem.append(journalcontainer)
+        journalcontainer.style.display = "none"
+
+        // adding mouse over and mouse leave with style
         journalitem.addEventListener("mouseover", function(e) {
-            journalitem.style.background = 'blue'
+            journalitem.style.background = 'lightblue'
         })
         journalitem.addEventListener("mouseleave", function(e) {
             journalitem.style.background = 'white'
         })
+        // add click even to hide and show container 
         journalitem.addEventListener("click", function(e) {
             e.preventDefault()
-            let journaldate = document.createElement("p")
-            let journalcontent = document.createElement("p")
-            journaldate.innerText = journal.journaldate
-            journalcontent.innerText = journal.journalcontent
-            journalitem.append(journalcontent, journaldate)
-            
+            let journalvisb = journalcontainer.style.display
+            if(journalvisb == "none"){
+                journalcontainer.style.display = "block"
+            } else {
+                journalcontainer.style.display = "none"
+            }
         })
-        
-
+        deletebutton.addEventListener("click", () => {
+            deleteJournal(journal.id)})
         journallist.append(journalitem)
-    })
 
+    })
+    
  }
-//  function makeForm (){
-//     let date = document.createElement("input");
-//     let inputtitle = document.createElement("input");
-//     let button = document.createElement("button")
-//     let textinput = document.createElement("textarea")
-//     let note = document.getElementById("add-note");
-//     button.innerText = "Save Journal"
-//     date.type = "date"
-//     textinput.cols = "30"
-//     textinput.rows = "30"
-//     note.append( inputtitle, date, textinput, button);
-//  }
+
+ function deleteJournal(id){
+  
+ }
 
  function submitHandler(e, input, note){
     let p = document.createElement("p");
