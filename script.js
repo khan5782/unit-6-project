@@ -1,8 +1,3 @@
-/**
- * when add page is clicked on 
- * lead to notes page 
- */
-
  document.addEventListener("DOMContentLoaded", () => {
      let addPage = document.getElementById("add-page")
      addPage.addEventListener("click", addPagehandler)
@@ -17,8 +12,8 @@
     journalpage.style.display = "block"
  }
 
- function saveJournal(){
-
+ function saveJournal(e){
+    e.preventDefault()
     // grabbing input ele for each journal
     let journaltitle = document.getElementById("journal-title")
     let journaldate = document.getElementById("journal-date")
@@ -62,6 +57,7 @@
         // create el to show and hide each el
         let journalcontainer = document.createElement("div")
         journalcontainer.id = `container-${journal.id}`
+        journalcontainer.className = "innerDiv"
 
         let journaldate = document.createElement("p")
         let journalcontent = document.createElement("p")
@@ -74,14 +70,7 @@
         journalcontainer.append(journalcontent, journaldate, deletebutton)
         journalitem.append(journalcontainer)
         journalcontainer.style.display = "none"
-
-        // adding mouse over and mouse leave with style
-        journalitem.addEventListener("mouseover", function(e) {
-            journalitem.style.background = 'lightblue'
-        })
-        journalitem.addEventListener("mouseleave", function(e) {
-            journalitem.style.background = 'white'
-        })
+       
         // add click even to hide and show container 
         journalitem.addEventListener("click", function(e) {
             e.preventDefault()

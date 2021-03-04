@@ -2,9 +2,44 @@ h1, p{
     text-align: center;
 }
 
-.addPage{
+div{
+    background-color: burlywood;
+}
+
+.oldEntries{
     background-color: cadetblue;
+    width: 20%; 
+    height: 100vh;
+    float: left;
+    border-radius: 10px;
+}
+
+.add{
+    background-color: green;
+    float: left;
+    margin: 0px 10px;
     width: 30%;
     height: 250px;
     border-radius: 10px;
+}
+
+.entry{
+    float: left;
+    width: 70%;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+form{
+    width: 80%;
+    margin: auto;
+}
+
+textarea{
+    height: 300px; 
+    width: 80%;
+}
+
+ul li:hover{
+    background-color: lightblue;
 }
