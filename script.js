@@ -92,8 +92,7 @@
                 journalcontainer.style.display = "none"
             }
         })
-        deletebutton.addEventListener("click", () => {
-            deleteJournal(journal.id)})
+        deletebutton.addEventListener("click", () => {deleteJournal(journal.id)})
         journallist.append(journalitem)
 
     })
@@ -101,7 +100,12 @@
  }
 
  function deleteJournal(id){
-  
+    let journals = JSON.parse(localStorage.getItem("journals"))
+    delete journals[id]
+    let deletejournal = document.getElementById(id)
+    deletejournal.remove()
+    localStorage.setItem("journals", JSON.stringify(journals))
+    console.log(journals, localStorage)
  }
 
  function submitHandler(e, input, note){
@@ -113,3 +117,5 @@
     console.log(note)
     console.log(p.innerText)
  }
+
+ 
