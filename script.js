@@ -198,3 +198,6 @@ function submitHandler(e, input, note){
    console.log(note)
    console.log(p.innerText)
 }
+
+
+// this should be the updated one
