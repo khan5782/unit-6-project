@@ -35,30 +35,26 @@
         </form>
     </div>
 
-    <div class = "entry">
-        <form>
-            <input id="planner-title" placeholder="Entry Title">
-            <input id="planner-date" type="date"></input><br>
-            <label> Goals: </label> <br>
-            <input id="planner-content"> <br>
-                <!-- <ul id="goals"> 
-                    <li></li>
-                </ul> -->
-            <label> To-do List: </label> <br>
-            <input id="planner-content"> <br>
-                <!-- <p>To-do</p>
-                <ul id="to-do"> 
-                    <li></li>
-                </ul> -->
-            <label> BrainDump: </label> <br>
-            <input id="planner-content">
-                <!-- <p>Other Brainstorm</p>
-                <ul id="brainstorm"> 
-                    <li></li>
-                </ul> -->
-            </input><br>
-            <button id="journal-save">Save Your Entry</button><br>
-        </form>
+    <div id="planner" class = "entry" style="display:none">
+        <input id="input-planner"></input>
+        <select id="items">
+            <option value="goals-list">ADD GOAL</option>
+            <option value="todo-list">ADD TO DO</option>
+            <option value="notes-list">ADD NOTE</option>
+          </select>
+        <button id="planner-button">Add</button>
+        <p>GOALS</p>
+        <ol id="goals-list">
+        
+        </ol>
+        <p> TO DO</p>
+        <ol id="todo-list">
+        
+        </ol>
+        <p>NOTES</p>
+        <ol id="notes-list">
+        
+        </ol>
     </div>
 </body>
 </html>

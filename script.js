@@ -1,10 +1,93 @@
- document.addEventListener("DOMContentLoaded", () => {
-     let addPage = document.getElementById("add-page")
-     addPage.addEventListener("click", addPagehandler)
-     let button = document.getElementById("journal-save")
-     button.addEventListener("click", saveJournal)
- })
- 
+document.addEventListener("DOMContentLoaded", () => {
+    let addPage = document.getElementById("add-page")
+    addPage.addEventListener("click", addPagehandler)
+    let button = document.getElementById("journal-save")
+    button.addEventListener("click", eventHandler)
+    let addplanner = document.getElementById("add-planner")
+    addplanner.addEventListener("click", showaddplanner)
+    let buttonPlanner = document.getElementById("planner-button")
+    buttonPlanner.addEventListener("click", addPlannerItems)
+})
+
+
+
+//ADD PLANNER 
+
+function showaddplanner(){
+    let pagecontainer = document.getElementById("add-note")
+    pagecontainer.style.display = "none"
+    let planner = document.getElementById("planner")
+    planner.style.display = "block"
+}
+
+function addPlannerItems(){
+    let input = document.getElementById("input-planner")
+    let selection = document.getElementById("items")
+    let goallist = document.getElementById("goals-list")
+    let todolist = document.getElementById("todo-list")
+    let noteslist = document.getElementById("notes-list")
+    let inputval = input.value
+    let selectionval = selection.value
+    switch(selectionval) {
+        case "goals-list":
+            addGoals(goallist, inputval)
+          break;
+        case "todo-list":
+          todo(todolist, inputval)
+          break;
+        case "notes-list":
+         addNotes(noteslist, inputval)
+          break;
+    }
+    input.value = ""
+}
+
+function addGoals(goallist, inputval){
+    let goalli = document.createElement("li")
+    let goalbutton = document.createElement("button")
+    goalbutton.innerText = "X"
+    goalli.innerText = inputval
+    goallist.append(goalli, goalbutton)
+    goalli.addEventListener("click", clickli)
+    goalbutton.addEventListener("click", deleteli)
+}
+function clickli(e){
+    e.preventDefault()
+    e.target.style.textDecoration = "line-through"
+}
+function deleteli(e){
+    e.preventDefault()
+    e.target.parentElement.style.display = "none"
+}
+
+function todo(todolist, inputval){
+    let todoli = document.createElement("li")
+    let todobutton = document.createElement("button")
+    todobutton.innerText = "X"
+    todoli.innerText = inputval
+    todolist.append(todoli, todobutton)
+    todoli.addEventListener("click", clickli)
+    todobutton.addEventListener("click", deleteli)
+}
+
+function addNotes(noteslist, inputval){
+    let notesli = document.createElement("li")
+    let notesbutton = document.createElement("button")
+    notesbutton.innerText = "X"
+    notesli.innerText = inputval
+    noteslist.append(notesli, notesbutton)
+    notesli.addEventListener("click", clickli)
+    notesbutton.addEventListener("click", deleteli)
+}
+
+
+
+
+
+
+
+//ADD JOURNAL 
+
  function addPagehandler(e){
     let pagecontainer = document.getElementById("add-note")
     pagecontainer.style.display = "none"
@@ -71,7 +154,7 @@
         journalitem.append(journalcontainer)
         journalcontainer.style.display = "none"
        
-        // add click even to hide and show container 
+        add click even to hide and show container 
         journalitem.addEventListener("click", function(e) {
             e.preventDefault()
             let journalvisb = journalcontainer.style.display
@@ -106,4 +189,7 @@
     console.log(note)
     console.log(p.innerText)
  }
+
+
+
 
