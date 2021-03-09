@@ -12,9 +12,22 @@ document.addEventListener("DOMContentLoaded", () => {
        addPlannerFromStorage(planners)
        
    }
+   let footerQuote = document.getElementById("footer")
+   footerQuote.addEventListener("click", genQuote)
+   genQuote()
 })
 
+function genQuote(){
+    fetch("http://staging.quotable.io/random")
+    .then(res => res.json())
+    .then(data => changeContent(data))
+}
 
+function changeContent(data){
+    let ptag = document.getElementById("text");
+    let text = data.content
+    ptag.innerText = `${text}`   
+}
 // Add a planner 
 
 function addPlannerFromStorage(planners){
@@ -71,13 +84,14 @@ function addPlannerItems(){
 }
 
 function addGoals(goallist, inputval, id){
-   let containerdiv =document.createElement("div")
-   let goalli = document.createElement("li")
-   let goalbutton = document.createElement("button")
-   goalbutton.innerText = "X"
-   goalli.innerText = inputval
-   containerdiv.append(goalli, goalbutton)
-   goallist.append(containerdiv)
+    let div = document.createElement("div");
+    let goalli = document.createElement("span")
+    let goalbutton = document.createElement("button")
+    goalbutton.className = "delete"
+    goalli.classList = "tag is-medium"
+    goalli.innerText = inputval
+    div.append(goalli, goalbutton)
+    goallist.append(div)
    goalli.addEventListener("click", clickli)
    goalbutton.addEventListener("click", (e) =>{
        deleteli(e, id, "goallist")
@@ -100,10 +114,12 @@ function deleteli(e, id, type){
 function todo(todolist, inputval, id){
    let containerdiv = document.createElement("div")
    
-   let todoli = document.createElement("li")
+   let todoli = document.createElement("span")
    let todobutton = document.createElement("button")
+
+   todobutton.className = "delete"
+   todoli.classList = "tag is-medium"
    
-   todobutton.innerText = "X"
    todoli.innerText = inputval
    containerdiv.append(todoli, todobutton)
    todolist.append(containerdiv)
@@ -115,9 +131,10 @@ function todo(todolist, inputval, id){
 
 function addNotes(noteslist, inputval, id){
    let containerdiv = document.createElement("div")
-   let notesli = document.createElement("li")
+   let notesli = document.createElement("span")
    let notesbutton = document.createElement("button")
-   notesbutton.innerText = "X"
+   notesbutton.className = "delete"
+   notesli.classList = "tag is-medium"
    notesli.innerText = inputval
    containerdiv.append(notesli, notesbutton)
    noteslist.append(containerdiv)
@@ -176,20 +193,20 @@ function createJournalList(key){
    // for each journal we want to add a journal to li
    let journals = JSON.parse(localStorage.getItem("journals"))
    let journal = journals[key]
-   let journalitem = document.createElement("li")
+   let journalitem = document.createElement("div")
+   journalitem.classList = "box is-medium"
    journalitem.innerText = journal.title
    journalitem.id = journal.id
 
 // <span class="tag is-medium"> entry<button class="delete"></button></span>
 
    // create el to show and hide each el
-   let journalcontainer = document.createElement("span")
+   let journalcontainer = document.createElement("div")
    journalcontainer.id = `container-${journal.id}`
-   journalcontainer.className = "innerDiv tag is-medium"
+   journalcontainer.className = "innerDiv"
    let innerDivDate = document.createElement("p")
    let innerDivContent = document.createElement("p")
    let deletebutton = document.createElement("button")
-   deletebutton.className = "delete"
    deletebutton.innerText = "Delete Journal"
    innerDivDate.innerText = journal.date
    innerDivContent.innerText = journal.content

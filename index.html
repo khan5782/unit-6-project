@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>BUJO - O</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +25,7 @@
         <div class="tile is-child is-2 box has-text-centered">
           <p class="title is-4">Previous Entries</p>
           <div id="journal-list">
-            <span class="tag is-medium"> entry<button class="delete"></button></span>
+            <span class="tag is-medium">entry <button class="delete"></button></span>
           </div>
         </div>
         <!-- BOX 2   -->
@@ -32,7 +33,7 @@
         <div class="tile is-child box" id="add-page">
           <p class="title has-text-centered">Add Journal Page</p>
           <!-- ENTRY TITLE AND DATE -->
-          <div class="field is-grouped none" id = "journal-page">
+          <div class="field is-grouped" id = "journal-page">
             <div class = "field-label is-normal">
               <label class="label"> Today </label>
             </div>
@@ -61,15 +62,15 @@
           </div>
         </div>
           <!-- BOX 3 -->
-        <div class="tile is-child box" id = "planner">
+        <div class="tile is-child box" id = "add-planner">
           <p class="title has-text-centered">Add Planner Page</p>
           <!-- SELECT WHERE TO ADD AND DATE -->
-          <div class="field is-grouped">
+          <div class="field is-grouped" id="planner">
             <div class="control">
               <input class="input is-success" id ="input-planner" type="text" placeholder="Add Me">
             </div>
             <div class = "field-label is-normal">
-              <label class="label"> Add To - </label>
+              <label class="label"> Add-On To </label>
             </div>
             <!-- <div class="control"> -->
               <div class=" control select is-success">
@@ -118,14 +119,12 @@
       </div>
       </div> <!--ENDS BOXES -->
       <!-- FOOTER -->
-     <footer class="footer has-background-success"> 
+     <footer class="footer has-background-success" id ="footer"> 
         <div class="content has-text-centered">
-          <p>
-            Some quote will go here 
+          <p id="text" class="title is-3">
           </p>
         </div>
     </footer> <!--ENDS FOOTER--> 
     </div> <!--ENDS CONTAINER BOX -->
   </body>
 </html>
-
