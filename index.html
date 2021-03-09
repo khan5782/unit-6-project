@@ -1,60 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
-    <link rel="stylesheet" href="styles.css">
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script.js"></script>
-</head>
-<body>
-    <h1>Project Name</h1>
-    <div class = "oldEntries">
-        <p>Click to see content of previous entries</p>
-        <ul id="journal-list">
-                
-        </ul>
-    </div>
-
-    <div class = "front" id="add-note">
-        <div class = "add" id = "add-page">
-            <p>Add A New Page</p>
-        </div>  
-        <div class = "add" id = "add-planner">
-            <p>Add A Planner</p>
+  </head>
+  <body>
+    <div>
+      <!-- HEADER -->
+      <section class="hero is-success has-text-centered">
+        <div class="hero-body">
+          <p class="title is-1">
+            BUJO-O
+          </p>
+          <p class="subtitle">
+            Your Online Bullet Journal
+          </p>
         </div>
-    </div>
-
-    <div class = "entry" id="journal-page" style="display:none">
-        <form>
-            <input id ="journal-title" placeholder="Entry Title"></input>
-            <input id="journal-date" type="date"></input><br>
-            <textarea id="journal-content"></textarea><br>
-            <button id="journal-save">Save Your Entry</button><br>
-        </form>
-    </div>
-
-    <div id="planner" class = "entry" style="display:none">
-        <input id="input-planner"></input>
-        <select id="items">
-            <option value="goals-list">ADD GOAL</option>
-            <option value="todo-list">ADD TO DO</option>
-            <option value="notes-list">ADD NOTE</option>
-          </select>
-        <button id="planner-button">Add</button>
-        <p>GOALS</p>
-        <ol id="goals-list">
-        
-        </ol>
-        <p> TO DO</p>
-        <ol id="todo-list">
-        
-        </ol>
-        <p>NOTES</p>
-        <ol id="notes-list">
-        
-        </ol>
-    </div>
-</body>
+      </section>
+      <!-- BOXES -->
+      <div class="tile is-parent">
+        <!-- BOX 1 -->
+        <div class="tile is-child is-2 box has-text-centered">
+          <p class="title is-4">Previous Entries</p>
+          <div id="journal-list">
+            <span class="tag is-medium"> entry<button class="delete"></button></span>
+          </div>
+        </div>
+        <!-- BOX 2   -->
+        <div class="tile is child" id="add-note">
+        <div class="tile is-child box" id="add-page">
+          <p class="title has-text-centered">Add Journal Page</p>
+          <!-- ENTRY TITLE AND DATE -->
+          <div class="field is-grouped none" id = "journal-page">
+            <div class = "field-label is-normal">
+              <label class="label"> Today </label>
+            </div>
+            <div class="control">
+              <input class="input is-success" id ="journal-title" type="text" placeholder="Entry Title">
+            </div>
+            <div class="control">
+              <input class="input is-success" id="journal-date" type="date">
+            </div>
+          </div>
+          <!-- TEXTAREA -->
+          <div class="field">
+            <label class="label">Message</label>
+            <div class="control">
+              <textarea class="textarea is-danger" id="journal-content" placeholder="Start writing here..."></textarea>
+            </div>
+          </div>
+          <!-- SUBMIT AND CANCEL BUTTONS -->
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary" id="journal-save">Submit</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
+        </div>
+          <!-- BOX 3 -->
+        <div class="tile is-child box" id = "planner">
+          <p class="title has-text-centered">Add Planner Page</p>
+          <!-- SELECT WHERE TO ADD AND DATE -->
+          <div class="field is-grouped">
+            <div class="control">
+              <input class="input is-success" id ="input-planner" type="text" placeholder="Add Me">
+            </div>
+            <div class = "field-label is-normal">
+              <label class="label"> Add To - </label>
+            </div>
+            <!-- <div class="control"> -->
+              <div class=" control select is-success">
+              <select id="items">
+                <option value="goals-list">Goals</option>
+                <option value="todo-list">To-do List</option>
+                <option value="notes-list">BrainDump</option>
+              </select>
+              </div>
+            <!-- </div> -->
+            <div class="control">
+              <button class="button is-primary" id="planner-button">Submit</button>
+            </div>
+          </div>
+          <!-- LIST SECTION -->
+          <div class="field">
+            <label class="label"> Goals: </label>
+              <div class="control">
+                <label class="checkbox">
+                  <div id="goals-list">
+                      <!-- <input type="checkbox">
+                  added to to-do
+                </label> -->
+                  </div>
+              </div>
+            <label class="label"> To-do List: </label>
+            <div class="control">
+                <label class="checkbox">
+                  <div id="todo-list">
+                    <!-- <input type="checkbox">
+                  added to to-do -->
+                  </div>
+                </label>
+            </div>
+            <label class="label"> BrainDump: </label>
+              <div class="control">
+                <label class="checkbox">
+                  <!-- <input type="checkbox">
+                  added to braindump -->
+                  <div id="notes-list"></div>
+                </label>
+              </div>
+          </div>
+          <!-- BUTTONS TO SUBMIT AND RESET -->
+        </div> <!--ENDS BOX THREE -->
+      </div>
+      </div> <!--ENDS BOXES -->
+      <!-- FOOTER -->
+     <footer class="footer has-background-success"> 
+        <div class="content has-text-centered">
+          <p>
+            Some quote will go here 
+          </p>
+        </div>
+    </footer> <!--ENDS FOOTER--> 
+    </div> <!--ENDS CONTAINER BOX -->
+  </body>
 </html>
+

@@ -1,25 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let addPage = document.getElementById("add-page")
-    addPage.addEventListener("click", addPagehandler)
     let button = document.getElementById("journal-save")
     button.addEventListener("click", eventHandler)
-    let addplanner = document.getElementById("add-planner")
-    addplanner.addEventListener("click", showaddplanner)
-    let buttonPlanner = document.getElementById("planner-button")
-    buttonPlanner.addEventListener("click", addPlannerItems)
+   let buttonPlanner = document.getElementById("planner-button")
+   buttonPlanner.addEventListener("click", addPlannerItems)
+   let journals = JSON.parse(localStorage.getItem("journals")) || {}
+   if(Object.keys(journals).length != 0){
+       addJournalsToList()
+   }
+   let planners = JSON.parse(localStorage.getItem("planners")) || {}
+   if(Object.keys(planners).length != 0){
+       addPlannerFromStorage(planners)
+       
+   }
 })
 
 
 // Add a planner 
 
-function showaddplanner(){
-   let pagecontainer = document.getElementById("add-note")
-   pagecontainer.style.display = "none"
-   let planner = document.getElementById("planner")
-   planner.style.display = "block"
+function addPlannerFromStorage(planners){
+   let goallistel = document.getElementById("goals-list")
+   let todolistel = document.getElementById("todo-list")
+   let noteslistel = document.getElementById("notes-list")
+   const {todolist, goallist, noteslist} = planners
+   Object.keys(todolist).forEach(key => {
+       todo(todolistel, todolist[key])
+   })
+   Object.keys(noteslist).forEach(key => {
+       addNotes(noteslistel, noteslist[key])
+   })
+   Object.keys(goallist).forEach(key => {
+       addGoals(goallistel, goallist[key])
+   })
+   
 }
 
 function addPlannerItems(){
+   let plannersobj = {
+       todolist: {},
+       goallist: {},
+       noteslist: {}
+   }
+   let planners = JSON.parse(localStorage.getItem("planners")) || plannersobj
+   // plannersobj = { ...plannersobj, ...planners}
    let input = document.getElementById("input-planner")
    let selection = document.getElementById("items")
    let goallist = document.getElementById("goals-list")
@@ -27,56 +49,82 @@ function addPlannerItems(){
    let noteslist = document.getElementById("notes-list")
    let inputval = input.value
    let selectionval = selection.value
+   let id = Date.now()
    switch(selectionval) {
        case "goals-list":
-           addGoals(goallist, inputval)
+           addGoals(goallist, inputval, id)
+           planners.goallist[id] = inputval
          break;
        case "todo-list":
-         todo(todolist, inputval)
+         todo(todolist, inputval, id)
+         planners.todolist[id] = inputval
          break;
        case "notes-list":
-        addNotes(noteslist, inputval)
+        addNotes(noteslist, inputval, id)
+        planners.noteslist[id] = inputval
          break;
    }
    input.value = ""
+   localStorage.setItem("planners", JSON.stringify(planners))
+   
+   
 }
 
-function addGoals(goallist, inputval){
+function addGoals(goallist, inputval, id){
+   let containerdiv =document.createElement("div")
    let goalli = document.createElement("li")
    let goalbutton = document.createElement("button")
    goalbutton.innerText = "X"
    goalli.innerText = inputval
-   goallist.append(goalli, goalbutton)
+   containerdiv.append(goalli, goalbutton)
+   goallist.append(containerdiv)
    goalli.addEventListener("click", clickli)
-   goalbutton.addEventListener("click", deleteli)
+   goalbutton.addEventListener("click", (e) =>{
+       deleteli(e, id, "goallist")
+   })
+   
+   
 }
 function clickli(e){
    e.preventDefault()
    e.target.style.textDecoration = "line-through"
 }
-function deleteli(e){
+function deleteli(e, id, type){
    e.preventDefault()
    e.target.parentElement.style.display = "none"
+   const planners = JSON.parse(localStorage.getItem("planners"))
+   delete planners[type][id]
+   localStorage.setItem("planners", JSON.stringify(planners))
 }
 
-function todo(todolist, inputval){
+function todo(todolist, inputval, id){
+   let containerdiv = document.createElement("div")
+   
    let todoli = document.createElement("li")
    let todobutton = document.createElement("button")
+   
    todobutton.innerText = "X"
    todoli.innerText = inputval
-   todolist.append(todoli, todobutton)
+   containerdiv.append(todoli, todobutton)
+   todolist.append(containerdiv)
    todoli.addEventListener("click", clickli)
-   todobutton.addEventListener("click", deleteli)
+   todobutton.addEventListener("click", (e) =>{
+       deleteli(e, id, "todolist")
+   })
 }
 
-function addNotes(noteslist, inputval){
+function addNotes(noteslist, inputval, id){
+   let containerdiv = document.createElement("div")
    let notesli = document.createElement("li")
    let notesbutton = document.createElement("button")
    notesbutton.innerText = "X"
    notesli.innerText = inputval
-   noteslist.append(notesli, notesbutton)
+   containerdiv.append(notesli, notesbutton)
+   noteslist.append(containerdiv)
    notesli.addEventListener("click", clickli)
-   notesbutton.addEventListener("click", deleteli)
+   notesbutton.addEventListener("click", (e) =>{
+       deleteli(e, id, "noteslist")
+   })
 }
 
 
@@ -84,12 +132,7 @@ function addNotes(noteslist, inputval){
 
 
 //ADD JOURNAL 
-function addPagehandler(e){
-   let pagecontainer = document.getElementById("add-note")
-   pagecontainer.style.display = "none"
-   let journalpage = document.getElementById("journal-page")
-   journalpage.style.display = "block"
-}
+
 function eventHandler (e){
    e.preventDefault();
    // grabbing input ele for each journal
@@ -112,23 +155,14 @@ function updateLocalStorage(title, date, content){
     }
     localStorage.setItem("journals", JSON.stringify(journals))
 
-    manipulationWithDisplay(title, date, content)
-}
-
-function manipulationWithDisplay(title, date, content){
-   // hiding journal entry page and showing home page 
-   let journalpage = document.getElementById("journal-page")
-   journalpage.style.display = "none"
-   let addnote = document.getElementById("add-note")
-   addnote.style.display = "block"
-   // setting input values to ""
    title.value = ""
    date.value = ""
    content.value = ""
-   getItemToAdd()
+   addJournalsToList()
 }
 
-function getItemToAdd(){
+
+function addJournalsToList(){
    // read save journal in local storage 
    let journals = JSON.parse(localStorage.getItem("journals"))
    let journallist = document.getElementById("journal-list")
@@ -146,13 +180,16 @@ function createJournalList(key){
    journalitem.innerText = journal.title
    journalitem.id = journal.id
 
+// <span class="tag is-medium"> entry<button class="delete"></button></span>
+
    // create el to show and hide each el
-   let journalcontainer = document.createElement("div")
+   let journalcontainer = document.createElement("span")
    journalcontainer.id = `container-${journal.id}`
-   journalcontainer.className = "innerDiv"
+   journalcontainer.className = "innerDiv tag is-medium"
    let innerDivDate = document.createElement("p")
    let innerDivContent = document.createElement("p")
    let deletebutton = document.createElement("button")
+   deletebutton.className = "delete"
    deletebutton.innerText = "Delete Journal"
    innerDivDate.innerText = journal.date
    innerDivContent.innerText = journal.content
@@ -198,6 +235,3 @@ function submitHandler(e, input, note){
    console.log(note)
    console.log(p.innerText)
 }
-
-
-// this should be the updated one
