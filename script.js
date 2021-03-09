@@ -63,6 +63,7 @@ function addPlannerItems(){
    let inputval = input.value
    let selectionval = selection.value
    let id = Date.now()
+   console.log(id)
    switch(selectionval) {
        case "goals-list":
            addGoals(goallist, inputval, id)
@@ -86,16 +87,16 @@ function addPlannerItems(){
 function addGoals(goallist, inputval, id){
     let div = document.createElement("div");
     let goalli = document.createElement("span")
-    let goalbutton = document.createElement("button")
-    goalbutton.className = "delete"
+    //let goalbutton = document.createElement("button")
+   // goalbutton.className = "delete"
     goalli.classList = "tag is-medium"
     goalli.innerText = inputval
-    div.append(goalli, goalbutton)
+    div.append(goalli)
     goallist.append(div)
    goalli.addEventListener("click", clickli)
-   goalbutton.addEventListener("click", (e) =>{
-       deleteli(e, id, "goallist")
-   })
+//    goalbutton.addEventListener("click", (e) =>{
+//        deleteli(e, id, "goallist")
+//    })
    
    
 }
@@ -107,42 +108,47 @@ function deleteli(e, id, type){
    e.preventDefault()
    e.target.parentElement.style.display = "none"
    const planners = JSON.parse(localStorage.getItem("planners"))
-   delete planners[type][id]
-   localStorage.setItem("planners", JSON.stringify(planners))
-   e.remove()
+   console.log(localStorage.getItem("planners"))
+   //delete planners[type][id]
+   console.log(id)
+  console.log(planners[type][id])
+   //localStorage.removeItem(`${planners[type][id]}`)
+   //localStorage.setItem("planners", JSON.stringify(planners))
+   //localStorage.removeItem(`${planners[`${type}`][`${id}`]}`)
+
 }
 
 function todo(todolist, inputval, id){
    let containerdiv = document.createElement("div")
    
    let todoli = document.createElement("span")
-   let todobutton = document.createElement("button")
+  // let todobutton = document.createElement("button")
 
-   todobutton.className = "delete"
+   //todobutton.className = "delete"
    todoli.classList = "tag is-medium"
    
    todoli.innerText = inputval
-   containerdiv.append(todoli, todobutton)
+   containerdiv.append(todoli )
    todolist.append(containerdiv)
    todoli.addEventListener("click", clickli)
-   todobutton.addEventListener("click", (e) =>{
-       deleteli(e, id, "todolist")
-   })
+//    todobutton.addEventListener("click", (e) =>{
+//        deleteli(e, id, "todolist")
+//    })
 }
 
 function addNotes(noteslist, inputval, id){
    let containerdiv = document.createElement("div")
    let notesli = document.createElement("span")
-   let notesbutton = document.createElement("button")
-   notesbutton.className = "delete"
+   //let notesbutton = document.createElement("button")
+   //notesbutton.className = "delete"
    notesli.classList = "tag is-medium"
    notesli.innerText = inputval
-   containerdiv.append(notesli, notesbutton)
+   containerdiv.append(notesli)
    noteslist.append(containerdiv)
    notesli.addEventListener("click", clickli)
-   notesbutton.addEventListener("click", (e) =>{
-       deleteli(e, id, "noteslist")
-   })
+//    notesbutton.addEventListener("click", (e) =>{
+//        deleteli(e, id, "noteslist")
+//    })
 }
 
 
