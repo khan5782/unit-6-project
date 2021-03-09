@@ -109,6 +109,7 @@ function deleteli(e, id, type){
    const planners = JSON.parse(localStorage.getItem("planners"))
    delete planners[type][id]
    localStorage.setItem("planners", JSON.stringify(planners))
+   e.remove()
 }
 
 function todo(todolist, inputval, id){
@@ -198,7 +199,6 @@ function createJournalList(key){
    journalitem.innerText = journal.title
    journalitem.id = journal.id
 
-// <span class="tag is-medium"> entry<button class="delete"></button></span>
 
    // create el to show and hide each el
    let journalcontainer = document.createElement("div")
